@@ -22,9 +22,41 @@ export const bookingHref =
 
 export const bookingIsExternal = bookingHref.startsWith("http");
 
-export const bookingEmbedSrc = bookingHref.includes("calendly.com")
-  ? `${bookingHref}${bookingHref.includes("?") ? "&" : "?"}hide_gdpr_banner=1&background_color=eaeaea&text_color=111111&primary_color=111111`
-  : null;
+function calendlyEmbedSrc(url: string) {
+  const parsed = new URL(url);
+  const embedDomain = (() => {
+    try {
+      return new URL(site.url).host;
+    } catch {
+      return "mrlrecruitmentagency.com";
+    }
+  })();
+
+  const params: Record<string, string> = {
+    hide_gdpr_banner: "1",
+    background_color: "eaeaea",
+    text_color: "111111",
+    primary_color: "111111",
+    embed_domain: embedDomain,
+    embed_type: "Inline",
+  };
+
+  for (const [key, value] of Object.entries(params)) {
+    if (!parsed.searchParams.has(key)) parsed.searchParams.set(key, value);
+  }
+
+  return parsed.toString();
+}
+
+/** Inline Calendly URL. Null when booking is not a Calendly event. */
+export const bookingEmbedSrc = (() => {
+  if (!bookingHref.includes("calendly.com")) return null;
+  try {
+    return calendlyEmbedSrc(bookingHref);
+  } catch {
+    return null;
+  }
+})();
 
 export const nav = [
   { href: "/", label: "Home" },

@@ -4,7 +4,7 @@ import Link from "next/link";
 import logo from "@/images/logo.png";
 import { BookingLink } from "@/components/BookingLink";
 import { bookingCopy } from "@/lib/content";
-import { bookingEmbedSrc, site } from "@/lib/site";
+import { bookingEmbedSrc, bookingHref, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Book a Meeting",
@@ -26,7 +26,7 @@ export default function BookingPage() {
           <iframe
             title="Book a meeting with MRL Recruitment"
             src={bookingEmbedSrc}
-            className="h-[780px] w-full bg-canvas"
+            className="h-[820px] w-full border-0 bg-canvas"
           />
         </div>
       ) : (
@@ -41,6 +41,18 @@ export default function BookingPage() {
           ? "Choose a time below. The calendar invite includes a Google Meet link."
           : "This opens the scheduler in a new tab."}
       </p>
+      {bookingEmbedSrc ? (
+        <p className="mt-3 text-sm leading-6">
+          <a
+            href={bookingHref}
+            className="underline underline-offset-4"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open the scheduler in a new tab
+          </a>
+        </p>
+      ) : null}
       <p className="mt-8 text-sm leading-6 text-ink/70">
         {site.hours[0]}, {site.hours[1]}
       </p>

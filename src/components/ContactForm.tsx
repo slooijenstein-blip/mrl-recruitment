@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import {
   contactErrorMessage,
   contactSubject,
+  enquirySubject,
   formSubmitActionUrl,
   readContactFields,
   validateContact,
@@ -113,7 +114,7 @@ export function ContactFormFields({ returned = false }: { returned?: boolean }) 
     fullNameRef.current.value = `${nextFields.firstName} ${nextFields.lastName}`;
     replyToRef.current.name = "_replyto";
     replyToRef.current.value = nextFields.email;
-    subjectRef.current.value = contactSubject;
+    subjectRef.current.value = enquirySubject(nextFields.firstName, nextFields.lastName);
     nextRef.current.value = `${window.location.origin}/contact?sent=1`;
     form.submit();
   }

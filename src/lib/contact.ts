@@ -7,6 +7,10 @@ export const formSubmitAjaxUrl = `https://formsubmit.co/ajax/${formSubmitAlias}`
 
 export const contactSubject = "New message from the MRL website";
 
+export function enquirySubject(firstName: string, lastName: string) {
+  return `Enquiry from ${firstName} ${lastName}`;
+}
+
 export type ContactFields = {
   firstName: string;
   lastName: string;

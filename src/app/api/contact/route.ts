@@ -1,5 +1,5 @@
 import {
-  contactSubject,
+  enquirySubject,
   formSubmitAjaxUrl,
   readContactFields,
   validateContact,
@@ -57,7 +57,7 @@ async function deliverContact(fields: ContactFields): Promise<boolean> {
         email: fields.email,
         message: fields.message,
         _replyto: fields.email,
-        _subject: contactSubject,
+        _subject: enquirySubject(fields.firstName, fields.lastName),
         _template: "table",
         _captcha: "false",
       }),

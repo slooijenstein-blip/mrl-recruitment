@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BookingLink } from "@/components/BookingLink";
 import { outlineButtonClass } from "@/lib/site";
 
 export function CtaBand() {
@@ -13,7 +12,9 @@ export function CtaBand() {
         ready to help.
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-        <BookingLink className={outlineButtonClass}>Book a meeting</BookingLink>
+        <Link href="/booking" className={outlineButtonClass}>
+          Book a meeting
+        </Link>
         <Link href="/contact" className={outlineButtonClass}>
           Contact us
         </Link>

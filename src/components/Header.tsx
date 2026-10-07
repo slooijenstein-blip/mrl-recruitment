@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import logo from "@/images/logo.png";
 import { headerBookingClass, nav } from "@/lib/site";
-import { BookingLink } from "@/components/BookingLink";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -88,7 +87,13 @@ export function Header() {
           </span>
         </Link>
 
-        <BookingLink className={headerBookingClass}>Booking</BookingLink>
+        <Link
+          href="/booking"
+          aria-current={isActive(pathname, "/booking") ? "page" : undefined}
+          className={headerBookingClass}
+        >
+          Booking
+        </Link>
       </div>
 
       {open ? (

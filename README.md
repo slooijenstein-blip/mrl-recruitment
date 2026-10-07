@@ -37,7 +37,7 @@ Other scripts:
 - Hours: Monday – Friday, 10am – 6pm
 - LinkedIn: https://www.linkedin.com/company/mrl-recruitment-consultancy
 
-The contact form does not store submissions. **Send** opens a `mailto:` message. The booking button does the same unless you set a scheduling link.
+The contact form does not store submissions. **Send** opens a `mailto:` message. Header and page links labeled Booking or “Book a meeting” go to `/booking`. The button on that page opens a `mailto:` message unless you set a scheduling link.
 
 ## Deploy on Vercel
 
@@ -53,7 +53,7 @@ Optional environment variables (Project Settings → Environment Variables):
 | Name | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL, for example `https://mrlrecruitmentagency.com`. Used for metadata, sitemap, and Open Graph. |
-| `NEXT_PUBLIC_BOOKING_URL` | Scheduling link, for example a Calendly URL. When set, Booking and “Book a meeting” open this URL in a new tab. When unset, those links open an email to the address above. |
+| `NEXT_PUBLIC_BOOKING_URL` | Scheduling link, for example a Calendly URL. When set, the button on `/booking` opens this URL in a new tab. When unset, that button opens an email to the address above. |
 
 Redeploy after changing either variable. `NEXT_PUBLIC_*` values are read at build time.
 

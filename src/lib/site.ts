@@ -14,23 +14,8 @@ export const site = {
 
 const customBookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL?.trim();
 
-const googleCalendarBooking = new URL("https://calendar.google.com/calendar/render");
-googleCalendarBooking.searchParams.set("action", "TEMPLATE");
-googleCalendarBooking.searchParams.set("text", "Meeting with MRL Recruitment");
-googleCalendarBooking.searchParams.set("add", site.email);
-googleCalendarBooking.searchParams.set(
-  "details",
-  [
-    "30-minute meeting requested from the MRL Recruitment website.",
-    "",
-    "Choose a time Monday to Friday, 10am–6pm (Europe/Berlin).",
-    "Before you save, click Add Google Meet so we both get the video link.",
-  ].join("\n"),
-);
-googleCalendarBooking.searchParams.set("ctz", "Europe/Berlin");
-
-/** Opens Google Calendar with Sam invited. Calendly can replace this via NEXT_PUBLIC_BOOKING_URL. */
-const defaultBookingUrl = googleCalendarBooking.toString();
+/** 30-minute meeting. Location is Google Meet. */
+const defaultBookingUrl = "https://calendly.com/slooijenstein-mrlrecruitmentagency/30min";
 
 export const bookingHref =
   customBookingUrl && customBookingUrl.length > 0 ? customBookingUrl : defaultBookingUrl;

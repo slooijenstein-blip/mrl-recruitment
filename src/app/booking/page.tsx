@@ -38,8 +38,8 @@ export default function BookingPage() {
       )}
       <p className="mt-6 max-w-xl text-sm leading-6 text-ink/80">
         {bookingEmbedSrc
-          ? "Choose a time in the scheduler. You’ll get a calendar invite after you confirm."
-          : "This opens Google Calendar with a meeting addressed to us. Sign in, pick a time, and click Add Google Meet before you save."}
+          ? "Choose a time below. The calendar invite includes a Google Meet link."
+          : "This opens the scheduler in a new tab."}
       </p>
       <p className="mt-8 text-sm leading-6 text-ink/70">
         {site.hours[0]}, {site.hours[1]}

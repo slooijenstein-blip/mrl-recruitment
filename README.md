@@ -26,7 +26,7 @@ Other scripts:
 | `/` | Home: hero, services, mission, booking/contact call to action |
 | `/services` | Recruitment, RPO, and HR services |
 | `/about` | About Us |
-| `/contact` | Contact form (opens the visitor’s email app) and direct details |
+| `/contact` | Contact form (emails the enquiry) and direct details |
 | `/faqs` | Frequently asked questions |
 | `/booking` | Book a meeting |
 
@@ -37,7 +37,7 @@ Other scripts:
 - Hours: Monday – Friday, 10am – 6pm
 - LinkedIn: https://www.linkedin.com/company/mrl-recruitment-consultancy
 
-The contact form does not store submissions. **Send** opens a `mailto:` message. Header and page links labeled Booking or “Book a meeting” go to `/booking`, which embeds the Calendly scheduler https://calendly.com/slooijenstein-mrlrecruitmentagency/30min. That event sends a Google Meet link with the invite.
+The contact form does not store submissions on this site. **Send** posts the enquiry to `/api/contact`. That route delivers it by email to slooijenstein@mrlrecruitmentagency.com through [FormSubmit](https://formsubmit.co/), with Reply-To set to the visitor’s address. The public form action is `https://formsubmit.co/fbc9b65698c1d85ed52a8636ce9a7177`. The server route posts to `https://formsubmit.co/ajax/fbc9b65698c1d85ed52a8636ce9a7177`. Neither URL contains the inbox address. No mail API key is configured. FormSubmit’s API often rejects server-side requests, so if that happens the same form is posted from the visitor’s browser, which is the path that actually sends. A successful browser post returns to `/contact` and shows a confirmation. Header and page links labeled Booking or “Book a meeting” go to `/booking`, which embeds the Calendly scheduler https://calendly.com/slooijenstein-mrlrecruitmentagency/30min. That event sends a Google Meet link with the invite.
 
 ## Deploy on Vercel
 

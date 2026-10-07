@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ContactForm } from "@/components/ContactForm";
+import { Suspense } from "react";
+import { ContactForm, ContactFormFields } from "@/components/ContactForm";
 import { PageIntro } from "@/components/PageIntro";
 import { contactIntro } from "@/lib/content";
 import { site } from "@/lib/site";
@@ -19,7 +20,9 @@ export default function ContactPage() {
       </PageIntro>
 
       <div className="mx-auto mt-12 grid w-full max-w-[1440px] gap-14 px-5 sm:px-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(260px,0.85fr)] lg:gap-20 lg:px-12">
-        <ContactForm />
+        <Suspense fallback={<ContactFormFields />}>
+          <ContactForm />
+        </Suspense>
         <aside className="h-fit border border-ink/15 px-6 py-8 sm:px-8 lg:sticky lg:top-32">
           <h2 className="text-2xl font-medium tracking-tight">Or contact us directly</h2>
           <address className="mt-6 space-y-2 text-[15px] not-italic leading-7">

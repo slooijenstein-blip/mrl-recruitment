@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import aboutImage from "@/images/about.jpg";
+import logo from "@/images/logo.png";
 import { CtaBand } from "@/components/CtaBand";
 import { PageIntro } from "@/components/PageIntro";
 import { aboutParagraphs, aboutQuote } from "@/lib/content";
@@ -30,13 +30,13 @@ export default function AboutPage() {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <div className="relative min-h-[320px] sm:min-h-[460px]">
+          <div className="relative min-h-[320px] bg-canvas sm:min-h-[460px]">
             <Image
-              src={aboutImage}
-              alt="Open-plan office with white desks, black chairs, and large windows"
+              src={logo}
+              alt="MRL Recruitment"
               fill
               sizes="(min-width: 1024px) 640px, 100vw"
-              className="object-cover"
+              className="object-contain p-10 sm:p-16"
             />
           </div>
         </div>

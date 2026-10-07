@@ -14,25 +14,32 @@ export const site = {
 
 const customBookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL?.trim();
 
-const meetingBody = [
-  "Hello MRL Recruitment,",
-  "",
-  "I would like to book a meeting.",
-  "",
-  "Name:",
-  "Company:",
-  "Phone:",
-  "What I need help with:",
-  "",
-  "Thank you.",
-].join("\n");
+const googleCalendarBooking = new URL("https://calendar.google.com/calendar/render");
+googleCalendarBooking.searchParams.set("action", "TEMPLATE");
+googleCalendarBooking.searchParams.set("text", "Meeting with MRL Recruitment");
+googleCalendarBooking.searchParams.set("add", site.email);
+googleCalendarBooking.searchParams.set(
+  "details",
+  [
+    "30-minute meeting requested from the MRL Recruitment website.",
+    "",
+    "Choose a time Monday to Friday, 10am–6pm (Europe/Berlin).",
+    "Before you save, click Add Google Meet so we both get the video link.",
+  ].join("\n"),
+);
+googleCalendarBooking.searchParams.set("ctz", "Europe/Berlin");
+
+/** Opens Google Calendar with Sam invited. Calendly can replace this via NEXT_PUBLIC_BOOKING_URL. */
+const defaultBookingUrl = googleCalendarBooking.toString();
 
 export const bookingHref =
-  customBookingUrl && customBookingUrl.length > 0
-    ? customBookingUrl
-    : `mailto:${site.email}?subject=${encodeURIComponent("Meeting request")}&body=${encodeURIComponent(meetingBody)}`;
+  customBookingUrl && customBookingUrl.length > 0 ? customBookingUrl : defaultBookingUrl;
 
 export const bookingIsExternal = bookingHref.startsWith("http");
+
+export const bookingEmbedSrc = bookingHref.includes("calendly.com")
+  ? `${bookingHref}${bookingHref.includes("?") ? "&" : "?"}hide_gdpr_banner=1&background_color=eaeaea&text_color=111111&primary_color=111111`
+  : null;
 
 export const nav = [
   { href: "/", label: "Home" },
